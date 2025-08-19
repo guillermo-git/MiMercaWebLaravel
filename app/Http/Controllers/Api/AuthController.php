@@ -76,11 +76,14 @@ class AuthController extends Controller
         return response()->json($response, 200);
     }
 
-   /* public function logout(){
-        $response=["success"=>false];
-        auth()->user()->tokens()->delete();
-        $response=["success"=true];
-        return response()->json($response, 200);
+ public function logout(Request $request){
+         $user = $request->user(); // usuario autenticado por token
 
-    }*/
+    if ($user) {
+        $user->tokens()->delete(); // elimina todos los tokens de ese usuario
+        return response()->json(['success' => true], 200);
+    }
+
+    return response()->json(['success' => false, 'message' => 'No user authenticated'], 401);
+    }
 }
