@@ -3,9 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\http\Controllers\Api\FrontController;
-use App\http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FrontController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\User\UserController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,9 @@ Route::prefix('v1')->group(function(){
         Route::post('/Auth/logout',[AuthController::class,'logout']);
 
         Route::apiResource('/admin/user',UserController::class);
+        Route::apiResource('/admin/product', ProductoController::class);
 
-        //::Rol Admin
+        //::Rol Admins
 
         
 

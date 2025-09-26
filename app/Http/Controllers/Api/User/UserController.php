@@ -21,6 +21,20 @@ class UserController extends Controller
         return response()->json($data, 200);
     }
 
+    public function destroy($id)
+    {
+        $data = User::find($id);
+        $data->delete();
+        return response()->json(null, 204);
+    }
+    public function store(Request $request)
+    {
+        //validacion
+        $data = User::create($request->all());
+        return response()->json($data, 201);
+    }
+    
+
     public function update(Request $request, $id)
     {
         
